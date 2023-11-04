@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src= 
+    "https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" > 
+        </script> 
+</head>
+<body>
+    <div class="container">
+ 
+        <form id="form1" name="form1" action="add_con.php" method="post">
+             
+        <table id="t01">
+         <tr>
+           <td>
+            <div class="row">
+             <div class="col-40">
+               <label for="startdate">start date:</label>
+             </div>
+             <div class="col-60">
+            
+               <input type="date" id="start_date" name="start_date" size="20" >
+             </div>
+           </div>
+           </td>
+         
+         </tr>
+        
+        
+         <td> <div class="row">
+             <div class="col-40">
+               <label for="n_daysa">No. of days:</label>
+             </div>
+             <div class="col-60">
+                 <font face="Cambria" style="font-size: 12pt">
+                 <font size="4">
+                <input type="number" id="n_days" name="n_days" min=0 placeholder="Enter no. of days.." required size="20" style="font-size:14px"></font>
+              </font>
+             </div>
+           </div>
+           </td>
+           <td>
+            <div class="row">
+             <div class="col-40">
+               <label for="end_datea">&nbsp;end date:</label>
+             </div>
+             <div class="col-60">
+                  <font face="Cambria" style="font-size: 12pt">
+                 <input type="date" id="end_date" name="end_date" placeholder="End date.." required size="20" style="font-size:14px">
+                 </font>
+       
+             </div>
+           </div>
+           </td>
+           </tr>
+       
+       </table>
+      
+      
+       
+         
+       <!-- start second table-->
+       
+      
+       <!-- end second table -->
+       
+          
+         </form>
+       </div> 
+       <script>
+        Date.prototype.addDays = function (num) {
+            var value = this.valueOf();
+            value += 86400000 * num;
+            return new Date(value);
+        }
+        $('#n_days').change(function(){
+            var $datepicker = $('#start_date');
+            var $datepicker1 = $('#end_date');
+            
+            var selectedDate = $datepicker.val();
+            var result = new Date(selectedDate);
+            var dateval = result.getDate();
+            
+            var ndays = $('#n_days').val();
+            numdays =  Number(ndays);
+            
+            var expirationDate = result.addDays(numdays+1);
+            
+             end_date1 = new Date(expirationDate);
+             var day = ("0" + end_date1.getDate()).slice(-2);
+             var month = ("0" + (end_date1.getMonth() + 1)).slice(-2);
+             var year = end_date1.getFullYear();
+             var newdate = year + '-' + month + '-' + day;
+             $datepicker1.val(newdate);
+        
+        });
+       </script>
+</body>
+</html>
